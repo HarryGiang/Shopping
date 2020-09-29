@@ -91,5 +91,12 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 //How to we start Listening to the server
-const port = process.env.PORT || 80;
-app.listen(port, () => console.log(`Server started on Port ${port}`));
+// const port = process.env.PORT || 80;
+// app.listen(port, () => console.log(`Server started on Port ${port}`));
+
+app.set("port", process.env.PORT || 8080);
+
+//Start Server
+app.listen(app.get("port"), function () {
+  console.log("Node app is running on port", app.get("port"));
+});
