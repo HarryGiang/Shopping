@@ -195,12 +195,14 @@ const MyAccountscreen = (props) => {
                     >
                       {UpdateAccount.avatar !== "" ? (
                         <Box>
-                          {console.log(`--+++${base_url}+++++-----${base_url}/${UpdateAccount.avatar}-----`)}
+                          {console.log(
+                            `--+++${base_url}+++++-----${base_url}/${UpdateAccount.avatar}-----`
+                          )}
                           <img
                             src={
                               // UpdateAccount.avatar.constructor !== Object
                               Object.keys(UpdateAccount.avatar).length === 0
-                                ? URL.createObjectURL(`${base_url}/${UpdateAccount.avatar}`)
+                                ? URL.createObjectURL(UpdateAccount.avatar)
                                 : `${base_url}/${UpdateAccount.avatar}`
                             }
                             style={{
