@@ -195,7 +195,7 @@ const MyAccountscreen = (props) => {
                     >
                       {UpdateAccount.avatar !== "" ? (
                         <Box>
-                          {console.log(`-------${UpdateAccount.avatar}-----`)}
+                          {console.log(`--+++${base_url}+++++-----${base_url}/${UpdateAccount.avatar}-----`)}
                           <img
                             src={
                               // UpdateAccount.avatar.constructor !== Object

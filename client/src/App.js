@@ -1,24 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
+import { useSelector } from "react-redux";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import "./App.css";
-
-import HomeScreen from "./screens/HomeScreen";
 import About from "./screens/AboutUs";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-import ViewDetailsScreen from "./screens/ViewDetailsScreen";
-import Contact from "./screens/Contact";
-import Shop from "./screens/Shop";
-import Test from "./screens/Test";
 import CheckOutCart from "./screens/CheckOutCart";
-import { PaymentCart } from "./screens/PaymentCart";
-import OrderDetailsScreen from "./screens/OrderDetailsScreen";
-import RegistrationScreen from "./screens/RegistrationScreen";
-import RegistrationScreen1 from "./screens/RegistrationScreen1";
-import PageNotFoundScreen from "./screens/PageNotFoundScreen";
+import Contact from "./screens/Contact";
+import HomeScreen from "./screens/HomeScreen";
+import EditPasswordScreen from "./screens/MyAccount/EditPasswordScreen";
 import MyAccountScreen from "./screens/MyAccount/MyAccountScreen";
 import OrdersScreen from "./screens/MyAccount/OrdersScreen";
-import EditPasswordScreen from "./screens/MyAccount/EditPasswordScreen";
-import { useSelector } from "react-redux";
+import OrderDetailsScreen from "./screens/OrderDetailsScreen";
+import { PaymentCart } from "./screens/PaymentCart";
+import RegistrationScreen from "./screens/RegistrationScreen";
+import RegistrationScreen1 from "./screens/RegistrationScreen1";
+import Shop from "./screens/Shop";
+import Test from "./screens/Test";
+import ViewDetailsScreen from "./screens/ViewDetailsScreen";
+
 function App() {
   const { account } = useSelector((state) => state.myaccount);
 
