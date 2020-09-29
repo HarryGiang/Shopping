@@ -19,12 +19,14 @@ function paymentCartReducer(
     case PAYMENTCART_LIST_MOMO:
       localStorage.removeItem("CART");
       window.location.href = dataResponseMoMo.data.payUrl;
-      console.log(dataResponseMoMo.data.payUrl)
+      console.log(dataResponseMoMo.data.payUrl);
       return { loading: false, data: dataResponsePaymentCart.data };
     case PAYMENTCART_LIST_PAYMENTONDELIVERY:
       // console.log("dataResponsePaymentCart",dataResponsePaymentCart)
       localStorage.removeItem("CART");
-      window.location.href = `http://localhost:3001/orderdetailsscreen/${
+      var base_url = window.location.origin;
+
+      window.location.href = `${base_url}/orderdetailsscreen/${
         dataResponsePaymentCart.data._id +
         "/" +
         dataResponsePaymentCart.data.date

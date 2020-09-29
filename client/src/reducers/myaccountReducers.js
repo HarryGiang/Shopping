@@ -19,7 +19,8 @@ function myaccountReducer(
       return { ...state, userordercart };
     case LOGOUT_ACCOUNT:
       localStorage.removeItem("Account");
-      window.location.href = "http://localhost:3000/";
+      var base_url = window.location.origin;
+      window.location.href = `${base_url}`;
       return { ...state };
     default:
       return state;

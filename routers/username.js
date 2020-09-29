@@ -80,7 +80,7 @@ router.post("/", upload.single("avatar"), async (req, res) => {
     password: req.body.password,
     avatar:
       req.file !== undefined
-        ? `http://localhost:8080/avatar/${file["avatar"][0].filename}`
+        ? `/avatar/${file["avatar"][0].filename}`
         : req.body.avatar,
     dateofbirth: req.body.dateofbirth,
   });
@@ -107,10 +107,10 @@ router.put("/:usernameId", upload.single("avatar"), async (req, res) => {
       username.password = req.body.password;
       username.avatar =
         req.file !== undefined
-          ? `http://localhost:8080/avatar/${req.file["filename"]}`
+          ? `/avatar/${req.file["filename"]}`
           : username.avatar;
       //   username.avatar = req.body.avatar;
-      // username.avatar = `http://localhost:8080/avatar/${file["avatar"][0].filename}`;
+      // username.avatar = `/avatar/${file["avatar"][0].filename}`;
       username.dateofbirth = req.body.dateofbirth;
 
       const updatedUserName = await username.save();

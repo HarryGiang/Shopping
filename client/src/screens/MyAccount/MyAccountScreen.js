@@ -38,7 +38,7 @@ const MyAccountscreen = (props) => {
   const accountUser = account[0];
   const [selectedDate, setSelectedDate] = useState(accountUser.dateofbirth);
   const [UpdateAccount, setupdateUserAccount] = useState(accountUser);
-
+  var base_url = window.location.origin;
   const handleDateChange = (date) => {
     setSelectedDate(`${date}`);
     setupdateUserAccount((prevState) => ({
@@ -200,8 +200,8 @@ const MyAccountscreen = (props) => {
                             src={
                               // UpdateAccount.avatar.constructor !== Object
                               Object.keys(UpdateAccount.avatar).length === 0
-                                ? URL.createObjectURL(UpdateAccount.avatar)
-                                : UpdateAccount.avatar
+                                ? URL.createObjectURL(`${base_url}/${UpdateAccount.avatar}`)
+                                : `${base_url}/${UpdateAccount.avatar}`
                             }
                             style={{
                               height: "80px",
