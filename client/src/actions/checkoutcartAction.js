@@ -11,7 +11,7 @@ const paymentonDelivery = (subtotalCart) => async (dispatch) => {
   console.log("paymentonDeliverysubtotalCart", subtotalCart);
   try {
     const dataResponsePaymentCart = await axios.post(
-      "http://localhost:8080/api/paymentcart/",
+      "/api/paymentcart/",
       subtotalCart
     );
     dispatch({
@@ -25,13 +25,13 @@ const paymentonDelivery = (subtotalCart) => async (dispatch) => {
 };
 const paymentCartMomo = (subtotalCart) => async (dispatch) => {
   const dataResponsePaymentCart = await axios.post(
-    "http://localhost:8080/api/paymentcart/",
+    "/api/paymentcart/",
     subtotalCart
   );
   var requestId = dataResponsePaymentCart.data.date;
   var subtotalCartProduct = dataResponsePaymentCart.data.subtotalCart;
   var returnUrlOrder =
-    "http://localhost:3001/orderdetailsscreen/" +
+    "https://mern-nodejs-caps.herokuapp.com/orderdetailsscreen/" +
     dataResponsePaymentCart.data._id +
     "/" +
     dataResponsePaymentCart.data.date;
@@ -72,7 +72,7 @@ const paymentCartMomo = (subtotalCart) => async (dispatch) => {
 
   if (dataResponseMoMo.data.message === "Success") {
     const dataResponsePaymentCart = await axios.post(
-      "http://localhost:8080/api/paymentcart/",
+      "/api/paymentcart/",
       subtotalCart
     );
     dispatch({
@@ -87,13 +87,13 @@ const oderDetail = (orderid, updateStatus) => async (dispatch) => {
   // ORDER_DETAIL
   // console.log("DELL id", orderid);
   const dataoderDetail = await axios.get(
-    "http://localhost:8080/api/paymentcart/" + orderid
+    "/api/paymentcart/" + orderid
   );
   if (updateStatus) {
     const update = { ...dataoderDetail.data, status: updateStatus };
     console.log("dataoderDetail Update", dataoderDetail, update);
     const dataoderDetailupdataStatus = await axios.put(
-      "http://localhost:8080/api/paymentcart/" + orderid,
+      "/api/paymentcart/" + orderid,
       update
     );
     dispatch({

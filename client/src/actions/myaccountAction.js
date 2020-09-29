@@ -16,7 +16,7 @@ const AccountUserEdit = (dataUser) => async (dispatch) => {
 
   axios
     .put(
-      "http://localhost:8080/api/username/" + multipartformData[0][1],
+      "/api/username/" + multipartformData[0][1],
       formData,
       {
         headers: {
@@ -38,7 +38,7 @@ const AccountUserEdit = (dataUser) => async (dispatch) => {
 };
 const UserOrderCart = (email, Pagination) => async (dispatch) => {
   const userordercart = await axios.get(
-    "http://localhost:8080/api/paymentcart/?email=" +
+    "/api/paymentcart/?email=" +
       email +
       `&page=${Pagination}&limit=5` +
       "&sort=date&order=desc"

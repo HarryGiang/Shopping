@@ -15,12 +15,12 @@ import {
 
 const registrationEmail = (dataUser) => async (dispatch) => {
   const selectUser = await axios.get(
-    "http://localhost:8080/api/username" + `?email=${dataUser.email}`
+    "/api/username" + `?email=${dataUser.email}`
   );
   dispatch({ type: BACKDROP_LOADING_OPEN });
   if (selectUser.data.length === 0) {
     const { data } = await axios.post(
-      "http://localhost:8080/api/username",
+      "/api/username",
       dataUser
     );
     const dataRequestSendEmail = {
@@ -28,7 +28,7 @@ const registrationEmail = (dataUser) => async (dispatch) => {
       description: data.password,
     };
     const sendMail = await axios.post(
-      "http://localhost:8080/api/email",
+      "/api/email",
       dataRequestSendEmail
     );
     if (sendMail) {
@@ -42,7 +42,7 @@ const registrationEmail = (dataUser) => async (dispatch) => {
 
 const loginEmail = (dataUser) => async (dispatch) => {
   const { data } = await axios.get(
-    "http://localhost:8080/api/username" +
+    "/api/username" +
       `?email=${dataUser.emaillogin}&password=${dataUser.passwordlogin}`
   );
   console.log("hoang UserName", data);
@@ -67,22 +67,22 @@ const closeAlert = () => async (dispatch) => {
 const loginGoogle = (profile) => async (dispatch) => {
   // console.log(profile,"ACTION")
   const queryEmail = await axios.get(
-    "http://localhost:8080/api/username" + `?email=${profile.email}`
+    "/api/username" + `?email=${profile.email}`
   );
   console.log(queryEmail, "ACTION");
   if (queryEmail.data.length === 0) {
     console.log("profile.image", profile.avatar);
     const profileData = await axios.post(
-      "http://localhost:8080/api/username",
+      "/api/username",
       profile
     );
     console.log(
       profileData,
-      "ACTION dataconst { data } = await axios.get(http://localhost:8080/api/us)",
+      "ACTION dataconst { data } = await axios.get(/api/us)",
       profile
     );
     const { data } = await axios.get(
-      "http://localhost:8080/api/username" +
+      "/api/username" +
         `?email=${profileData.data.email}&password=${profileData.data.password}`
     );
 
@@ -101,7 +101,7 @@ const loginGoogle = (profile) => async (dispatch) => {
     // }
   } else {
     const { data } = await axios.get(
-      "http://localhost:8080/api/username" +
+      "/api/username" +
         `?email=${queryEmail.data[0].email}&password=${queryEmail.data[0].password}`
     );
 
