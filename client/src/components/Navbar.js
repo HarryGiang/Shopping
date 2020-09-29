@@ -61,6 +61,39 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  logoImage: {
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
+  },
+  buttonRemoveMinWidth: {
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "0 !important",
+    },
+  },
+  headerRight: {
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      // direction="row",
+      // justify="flex-end",
+      // alignItems="center",
+    },
+    /**
+     *    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+     */
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+  },
 }));
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -78,6 +111,7 @@ export default function Navbar() {
   const [cartDrawer, setcartDrawer] = useState(false);
   const myaccount = useSelector((state) => state.myaccount);
   const cartList = useSelector((state) => state.cartList);
+  var base_url = window.location.origin;
   const datacartNumber = Object.keys(cartList).length;
   const handleClick = (Transition) => () => {
     setTransition(() => Transition);
@@ -105,7 +139,7 @@ export default function Navbar() {
     setSignInandLoginOpenandClose(false);
   };
   return (
-    <div>
+    <>
       <Container maxWidth="lg" className={classes.root}>
         <Grid
           container
@@ -113,17 +147,26 @@ export default function Navbar() {
           justify="space-between"
           alignItems="center"
           lg={12}
+          md={12}
         >
-          <Grid item lg={5} xs={5}>
-            <img src="/images/Capture.JPG" />
+          <Grid
+            item
+            lg={5}
+            xs={12}
+            md={4}
+            sm={12}
+            className={classes.logoImage}
+          >
+            <img src="/images/Capture.JPG" className="logoImage" />
           </Grid>
           <Grid
             container
-            direction="row"
-            justify="flex-end"
-            alignItems="center"
+            className={classes.headerRight}
+            // className="headerRight"
+            sm={12}
+            md={8}
             lg={6}
-            xs={7}
+            xs={12}
           >
             <Grid>
               <Link to="/paymentcart">
@@ -141,7 +184,7 @@ export default function Navbar() {
                   myaccount.account[0].avatar !== "" ? (
                     <Avatar
                       alt="Remy Sharp"
-                      src={myaccount.account[0].avatar}
+                      src={`${base_url}/${myaccount.account[0].avatar}`}
                     />
                   ) : (
                     <AccountCircleIcon />
@@ -166,8 +209,11 @@ export default function Navbar() {
                 )}
               </Box>
             </Grid>
-            <Grid>
-              <Button onClick={handleClick(TransitionLeft)}>
+            <Grid zeroMinWidth={true} item>
+              <Button
+                onClick={handleClick(TransitionLeft)}
+                className={classes.buttonRemoveMinWidth}
+              >
                 <MenuIcon />
               </Button>
             </Grid>
@@ -239,6 +285,6 @@ export default function Navbar() {
         </Grid>
       </Snackbar>
       {/* END MENU */}
-    </div>
+    </>
   );
 }

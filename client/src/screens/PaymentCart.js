@@ -14,6 +14,7 @@ import {
   TableRow,
   Typography,
   TextField,
+  Container,
 } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import React, { useEffect } from "react";
@@ -97,74 +98,76 @@ export const PaymentCart = () => {
 
   return (
     <>
-      <Navbar></Navbar>
-      <Grid
-        lg={10}
-        style={{ margin: "auto" }}
-        container
-        direction="row"
-        justify="center"
-        alignItems="flex-start"
-      >
-        <Grid lg="7">
-          <Typography>My cart</Typography>
-          <Divider />
-          {listproductcart()}
-        </Grid>
-        <Grid lg="5">
-          Oder Summary
-          <TableContainer>
-            <Table aria-label="simple table">
-              <TableBody>
-                <TableRow>
-                  <TableCell align="left">Subtotal</TableCell>
-                  <TableCell align="right">$ {subtotalCart()}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Shipping Vietnam</TableCell>
-                  <TableCell align="right">FREE</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Total</TableCell>
-                  <TableCell align="right">${subtotalCart()}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Link to="/checkoutcart">
-            <Button
-              variant="outlined"
+      <Navbar></Navbar>{" "}
+      <Container maxWidth="lg">
+        <Grid
+          lg={10}
+          style={{ margin: "auto" }}
+          container
+          direction="row"
+          justify="center"
+          alignItems="flex-start"
+        >
+          <Grid lg="7">
+            <Typography>My cart</Typography>
+            <Divider />
+            {listproductcart()}
+          </Grid>
+          <Grid lg="5">
+            Oder Summary
+            <TableContainer>
+              <Table aria-label="simple table">
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="left">Subtotal</TableCell>
+                    <TableCell align="right">$ {subtotalCart()}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="left">Shipping Vietnam</TableCell>
+                    <TableCell align="right">FREE</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="left">Total</TableCell>
+                    <TableCell align="right">${subtotalCart()}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <Link to="/checkoutcart">
+              <Button
+                variant="outlined"
+                fullWidth={true}
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  margin: "20px 0",
+                }}
+              >
+                Tiến Hành Thanh Toán
+              </Button>
+            </Link>
+            <Typography>Phiếu Ưu Đãi</Typography>
+            <TextField
+              id="outlined-basic"
+              label="Mã Ưu Đãi"
               fullWidth={true}
+              variant="outlined"
+            />
+            <Button
+              fullWidth={true}
+              variant="contained"
+              color="secondary"
               style={{
                 backgroundColor: "black",
                 color: "white",
                 margin: "20px 0",
               }}
             >
-              Tiến Hành Thanh Toán
+              Áp dụng
             </Button>
-          </Link>
-          <Typography>Phiếu Ưu Đãi</Typography>
-          <TextField
-            id="outlined-basic"
-            label="Mã Ưu Đãi"
-            fullWidth={true}
-            variant="outlined"
-          />
-          <Button
-            fullWidth={true}
-            variant="contained"
-            color="secondary"
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              margin: "20px 0",
-            }}
-          >
-            Áp dụng
-          </Button>
-        </Grid>
-      </Grid>
+          </Grid>
+        </Grid>{" "}
+      </Container>
       <Footer></Footer>
     </>
   );

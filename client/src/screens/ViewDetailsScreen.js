@@ -1,27 +1,26 @@
 import {
+  Box,
   Button,
   CardMedia,
   Container,
-  Typography,
   FormControl,
-  NativeSelect,
   FormHelperText,
-  TextField,
   MenuItem,
-  InputLabel,
   Select,
   Snackbar,
+  TextField,
+  Typography,
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import Alert from "@material-ui/lab/Alert";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import CartDrawer from "../components/CartDrawer";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -34,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+  },
+  buttonLeft: {
+    color: "white",
+    backgroundColor: "black",
+
+    "&:hover": {
+      backgroundColor: "black",
+    },
   },
 }));
 const ViewDetailsScreen = (props) => {
@@ -64,10 +71,6 @@ const ViewDetailsScreen = (props) => {
       console.log("gmhoang  ", productViewDetail);
     }
   }
-  const testsubmit = (va) => {
-    var e = document.getElementById("detailProductSize").innerHTML;
-    setOpen(true);
-  };
   const handleChangeSize = (event, value) => {
     setSize(event.target.value);
     const new_objSize = {
@@ -100,8 +103,8 @@ const ViewDetailsScreen = (props) => {
       <Container maxWidth="lg">
         {console.log("-----------", productViewDetail)}
         {productViewDetail[0] && (
-          <Grid container xs={12} spacing={1} style={{ margin: "20px" }}>
-            <Grid xs={6}>
+          <Grid container lg={12} md={12} sm={12} xs={12} spacing={1}>
+            <Grid lg={6} md={12} sm={12} xs={12}>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -109,52 +112,60 @@ const ViewDetailsScreen = (props) => {
                 image={productViewDetail[0].image1}
                 title="Contemplative Reptile"
               />
-              <Typography>{productViewDetail[0].description}</Typography>
             </Grid>
-            <Grid xs={4}>
-              <Typography variant="h5" gutterBottom>
+            <Grid lg={6} md={12} sm={12} xs={12}>
+              <Typography
+                variant="h4"
+                gutterBottom
+                style={{ fontWeight: "bold", marginTop: "35px" }}
+              >
                 {productViewDetail[0].title}
               </Typography>
               <Typography gutterBottom>
-                SKU: {productViewDetail[0]._id}
+                <span style={{ fontWeight: "bold" }}>SKU:</span>{" "}
+                {productViewDetail[0]._id}
               </Typography>
               <Typography gutterBottom>
-                $ {productViewDetail[0].price}
+                <span style={{ fontWeight: "bold" }}>PRICE: </span>
+                {productViewDetail[0].price.toLocaleString()} VNĐ
               </Typography>
               <Typography gutterBottom>
-                SIZE: {productViewDetail[0].size}
+                <span style={{ fontWeight: "bold" }}>SIZE:</span>{" "}
+                <FormControl className={classes.formControl}>
+                  <Select
+                    value={size}
+                    onChange={handleChangeSize}
+                    displayEmpty
+                    id="detailProductSize"
+                    inputProps={{ "aria-label": "Without label" }}
+                  >
+                    <MenuItem value="">None</MenuItem>
+                    <MenuItem value={"Small"}>Small</MenuItem>
+                    <MenuItem value={"Medium"}>Medium</MenuItem>
+                    <MenuItem value={"Large"}>Large</MenuItem>
+                  </Select>
+                  <FormHelperText>Size Caps</FormHelperText>
+                </FormControl>
               </Typography>
-              <Typography gutterBottom>
+              {/* <Typography gutterBottom>
                 Quantity: {productViewDetail[0].quantity}
+              </Typography> */}
+              <Typography gutterBottom>
+                <span style={{ fontWeight: "bold" }}>QUANTITY: </span>
+                <TextField
+                  onChange={handleChangeQuantity}
+                  label="Number"
+                  value={quantity}
+                  type="number"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  readOnly
+                  InputProps={{ inputProps: { min: 1, max: 10 } }}
+                  variant="outlined"
+                />
               </Typography>
-              <FormControl className={classes.formControl}>
-                <Select
-                  value={size}
-                  onChange={handleChangeSize}
-                  displayEmpty
-                  id="detailProductSize"
-                  inputProps={{ "aria-label": "Without label" }}
-                >
-                  <MenuItem value="">None</MenuItem>
-                  <MenuItem value={"Small"}>Small</MenuItem>
-                  <MenuItem value={"Medium"}>Medium</MenuItem>
-                  <MenuItem value={"Large"}>Large</MenuItem>
-                </Select>
-                <FormHelperText>Without label</FormHelperText>
-              </FormControl>
-              <Typography>Quantity</Typography>
-              <TextField
-                onKeyDown={handleChangeQuantity}
-                onChange={handleChangeQuantity}
-                label="Number"
-                value={quantity}
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                // InputProps={{ inputProps: { min: 1, max: 10 } }}
-                variant="outlined"
-              />
+
               <Grid
                 style={{ margin: "10px 0 10px" }}
                 container
@@ -162,19 +173,28 @@ const ViewDetailsScreen = (props) => {
                 justify="space-between"
                 alignItems="flex-start"
               >
-                <Grid lg={9}>
+                <Grid lg={9} md={9} sm={9} xs={9}>
                   {/* {console.log("Cartdata View type Of", Cartdata,typeof quantity)} */}
                   <CartDrawer addToCart={Cartdata} quantity={quantity} />
                 </Grid>
-                <Grid lg={2}>
-                  <Button variant="outlined" onClick={testsubmit}>
+                <Grid lg={2} md={2} sm={2} xs={2}>
+                  <Button variant="outlined" className={classes.buttonLeft}>
                     <FavoriteBorderIcon />
                   </Button>
                 </Grid>
               </Grid>
-              <Button variant="outlined" fullWidth={true}>
+              <Button
+                variant="outlined"
+                fullWidth={true}
+                className={classes.buttonLeft}
+              >
                 Buy now
               </Button>
+            </Grid>
+            <Grid lg={6} md={10} sm={10} xs={10}>
+              <Box mt={5} mb={5}>
+                <Typography>{productViewDetail[0].description}</Typography>
+              </Box>
             </Grid>
           </Grid>
         )}

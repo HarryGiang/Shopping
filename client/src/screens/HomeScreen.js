@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import GridImage from "../components/GridImage";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   menuNavbar: {
     backgroundImage:
       "url(https://static.wixstatic.com/media/baac51_88d59da2f5a844e9850ee580ab0c8b8d~mv2_d_4000_1782_s_2.jpg/v1/fill/w_1189,h_660,al_tl,q_85,usm_0.66_1.00_0.01/baac51_88d59da2f5a844e9850ee580ab0c8b8d~mv2_d_4000_1782_s_2.webp)",
@@ -23,6 +23,9 @@ const useStyles = makeStyles({
   headerText: {
     color: "white",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: " 46px",
+    },
     fontSize: " 80px",
     fontWeight: "bold",
   },
@@ -41,7 +44,7 @@ const useStyles = makeStyles({
     color: "white",
     fontWeight: "none",
   },
-});
+}));
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -71,12 +74,14 @@ const HomeScreen = () => {
         <Box>
           <Typography className={classes.headerText}>ALWAYS BE</Typography>
           <Typography className={classes.headerText}>ORIGINAL</Typography>
-          <Typography className={classes. headerText2}>
+          <Typography className={classes.headerText2}>
             NEW ARRIVALS ARE HERE
           </Typography>
           <Typography align="center">
             <Button className={classes.buttonHover}>
-              <span> Shop Now</span>
+            <Link to="/shop" style={{ color: "black" }}>
+                Shop All
+              </Link>
             </Button>
           </Typography>
         </Box>

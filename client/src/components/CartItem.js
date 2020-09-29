@@ -5,7 +5,7 @@ import {
   CardMedia,
   Grid,
   makeStyles,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import React from "react";
 import DialogCartItem from "./DialogCartItem";
@@ -53,6 +53,7 @@ const CartItem = (props) => {
   //   const handleClose = () => {
   //     setOpen(false);
   //   };
+  console.log("-------", props.productsItem);
   return (
     <>
       <Grid item xs={12} sm={6} md={3}>

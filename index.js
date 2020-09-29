@@ -28,40 +28,40 @@ app.use("/api/paymentcart", paymentcartRoute);
 //Hình ảnh sroudce
 // storage engine
 
-const storage = multer.diskStorage({
-  destination: "./upload/images",
-  filename: (req, file, cb) => {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1000000000,
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: "./upload/images",
+//   filename: (req, file, cb) => {
+//     return cb(
+//       null,
+//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+//     );
+//   },
+// });
+// const upload = multer({
+//   storage: storage,
+//   limits: {
+//     fileSize: 1000000000,
+//   },
+// });
 //Đường link thư mục
 app.use("/profile", express.static("upload/images"));
 app.use("/productImage", express.static("uploads/images"));
 //
 app.use("/avatar", express.static("uploads/images"));
-app.post(
-  "/upload",
-  upload.fields([{ name: "profile", maxCount: 3 }]),
-  (req, res) => {
-    var file = req.files;
-    // console.log(req)
-    res.json({
-      success: 1,
-      profile_url1: `http://localhost:8080/profile/${file["profile"][0].filename}`,
-      profile_url2: `http://localhost:8080/profile/${file["profile"][1].filename}`,
-      profile_url3: `http://localhost:8080/profile/${file["profile"][2].filename}`,
-    });
-  }
-);
+// app.post(
+//   "/upload",
+//   upload.fields([{ name: "profile", maxCount: 3 }]),
+//   (req, res) => {
+//     var file = req.files;
+//     // console.log(req)
+//     res.json({
+//       success: 1,
+//       profile_url1: `http://localhost:8080/profile/${file["profile"][0].filename}`,
+//       profile_url2: `http://localhost:8080/profile/${file["profile"][1].filename}`,
+//       profile_url3: `http://localhost:8080/profile/${file["profile"][2].filename}`,
+//     });
+//   }
+// );
 
 app.use(errHandler);
 

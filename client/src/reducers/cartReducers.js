@@ -15,9 +15,13 @@ function cartListReducer(state = initialState, action) {
       if (index !== -1) {
         if (state[index].size === product.size) {
           state[index].quantity += Number(quantity);
+          console.log("CART_LIST_ADD IF")
+        
           localStorage.setItem("CART", JSON.stringify(state));
+        
         }
       } else {
+        console.log("CART_LIST_ADD ELSE");
         state.push(product);
         localStorage.setItem("CART", JSON.stringify(state));
       }
@@ -42,7 +46,7 @@ var findProductInCart = (cart, product) => {
   var index = -1;
   if (cart.length > 0) {
     for (var i = 0; i < cart.length; i++) {
-      if (cart[i].id === product.id && cart[i].size === product.size) {
+      if (cart[i]._id === product._id && cart[i].size === product.size) {
         index = i;
         break;
       }

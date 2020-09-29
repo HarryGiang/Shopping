@@ -9,6 +9,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Box,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
@@ -24,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  buttonLeft: {
+    color: "white",
+    backgroundColor: "black",
+
+    "&:hover": {
+      backgroundColor: "black",
+    },
   },
 }));
 
@@ -60,10 +69,15 @@ export default function DialogCartItem(props) {
     }));
     console.log(name, value, "name ,value");
   };
-
+  console.log("DIALOGCART ITEM", dataProductCaps);
   return (
     <div>
-      <Button variant="outlined" fullWidth={true} onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        fullWidth={true}
+        className={classes.buttonLeft}
+        onClick={handleClickOpen}
+      >
         Add to Cart
       </Button>
       <Dialog
@@ -75,7 +89,7 @@ export default function DialogCartItem(props) {
       >
         <DialogContent>
           <Grid container lg={12}>
-            <Grid lg={6}>
+            <Grid lg={6} md={12} sm={12} xs={12}>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -85,52 +99,63 @@ export default function DialogCartItem(props) {
                 title="Contemplative Reptile"
               ></CardMedia>
             </Grid>
-            <Grid lg={6}>
+            <Grid lg={6} md={12} sm={12} xs={12}>
               <Typography variant="h5">{title}</Typography>
-              <Typography variant="h6">${price}</Typography>
-              <Typography variant="h6">SKU: {_id}</Typography>
-              <FormControl className={classes.formControl}>
-                <InputLabel
-                  shrink
-                  id="demo-simple-select-placeholder-label-label"
-                >
-                  Size
-                </InputLabel>
-                <Select
-                  name="size"
-                  value={dataProductCaps.size}
+              <Typography gutterBottom>
+                <span style={{ fontWeight: "bold" }}>SKU:</span> {_id}
+              </Typography>
+              <Typography gutterBottom>
+                <span style={{ fontWeight: "bold" }}>PRICE: </span>
+                {price} VNĐ
+              </Typography>
+              <Typography gutterBottom>
+                <span style={{ fontWeight: "bold" }}>SIZE:</span>
+                <FormControl className={classes.formControl}>
+                  <Select
+                    name="size"
+                    value={dataProductCaps.size}
+                    onChange={handleChangeSizeandQuantity}
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={"Small"}>Small</MenuItem>
+                    <MenuItem value={"Medium"}>Medium</MenuItem>
+                    <MenuItem value={"Large"}>Large</MenuItem>
+                  </Select>
+                  <FormHelperText>Size Caps</FormHelperText>
+                </FormControl>
+              </Typography>
+              <Typography gutterBottom>
+                <span style={{ fontWeight: "bold" }}>QUANTITY:</span>
+                <TextField
+                  label="Number"
+                  type="number"
+                  name="quantity"
+                  value={dataProductCaps.quantity}
+                  readOnly
                   onChange={handleChangeSizeandQuantity}
-                  displayEmpty
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={"Small"}>Small</MenuItem>
-                  <MenuItem value={"Medium"}>Medium</MenuItem>
-                  <MenuItem value={"Large"}>Large</MenuItem>
-                </Select>
-                <FormHelperText>Label + placeholder</FormHelperText>
-              </FormControl>
-              <Typography>Quantity</Typography>
-              <TextField
-                id="outlined-number"
-                label="Number"
-                type="number"
-                name="quantity"
-                value={dataProductCaps.quantity}
-                onChange={handleChangeSizeandQuantity}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{ inputProps: { min: 1, max: 10 } }}
-                variant="outlined"
-              />
-              <br></br>
-              <Link to={`/viewdetail/${_id}`}>View More Details</Link>
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{ inputProps: { min: 1, max: 10 } }}
+                  variant="outlined"
+                  fullWidth
+                />
+              </Typography>
+              <Typography>
+                <Link to={`/viewdetail/${_id}`}>View More Details</Link>
+              </Typography>
               <CartDrawer
                 addToCart={dataProductCaps}
                 quantity={dataProductCaps.quantity}
               />
+            </Grid>{" "}
+            <Grid lg={6} md={10} sm={10} xs={10}>
+              <Box mt={5} mb={5}>
+                <Typography>{dataProductCaps.description}</Typography>
+              </Box>
             </Grid>
           </Grid>
         </DialogContent>

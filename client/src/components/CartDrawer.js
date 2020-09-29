@@ -5,6 +5,7 @@ import {
   IconButton,
   TextField,
   Typography,
+  Box,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
@@ -21,7 +22,7 @@ import CustomizedSnackbars from "./Alert";
 const useStyles = makeStyles((theme) => ({
   drawer: {
     // width: "374px",
-    width: "700px",
+    width: "350px",
   },
   headerCart: {
     backgroundColor: "black",
@@ -35,6 +36,14 @@ const useStyles = makeStyles((theme) => ({
     width: "70px",
     padding: "0",
     marginBottom: "50px",
+  },
+  buttonLeft: {
+    color: "white",
+    backgroundColor: "black",
+
+    "&:hover": {
+      backgroundColor: "black",
+    },
   },
 }));
 export default function CartDrawer(props) {
@@ -80,12 +89,13 @@ export default function CartDrawer(props) {
     }
   };
   const CartProductDrawer = () => {
-    if (cartList !== null) {
+    if (cartList.length > 0) {
       console.log("testcartList", cartList);
       //JSON.parse(localStorage.getItem("CART"))
       const cartproductdrawer = JSON.parse(localStorage.getItem("CART"));
       // console.log("CartProductDrawerOne", cartproductdrawer.quantity);
       // console.log("CartProductDrawerTwo", cartList.quantity);
+      //  return   <p>Bạn Có sản phẩm</p>
       return cartList.map((cartproductdrawer, index) => {
         console.log("cartproductdrawer.quantity", cartproductdrawer.quantity);
         if (cartproductdrawer !== undefined) {
@@ -94,18 +104,17 @@ export default function CartDrawer(props) {
               <GridList cellHeight={80} cols={4}>
                 <GridListTile cols={1}>
                   <img
-                    src={cartproductdrawer.image2}
-                    style={{ width: "80%" }}
+                    src={cartproductdrawer.image1}
+                    style={{ width: "80px", height: "80px" }}
                   />
                 </GridListTile>
                 <GridListTile cols={2}>
-                  <Typography component="p">
+                  <Typography variant="caption" display="block">
                     {cartproductdrawer.title}
                     {cartproductdrawer.size}
                   </Typography>
-                  <Typography component="p">
-                    PRICE:{cartproductdrawer.price} Quantity:
-                    {cartproductdrawer.quantity}
+                  <Typography variant="caption" display="block">
+                    PRICE:{cartproductdrawer.price.toLocaleString()}
                   </Typography>
                   <TextField
                     label="Number"
@@ -118,6 +127,7 @@ export default function CartDrawer(props) {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    size="small"
                     variant="outlined"
                     // InputProps={{ inputProps: { min: 1, max: 10 } }}
                   />
@@ -136,6 +146,20 @@ export default function CartDrawer(props) {
           );
         }
       });
+    } else {
+      return (
+        <Grid className={classes.drawer} lg={12} rows={3} spacing={2}>
+          <Box style={{ margin: "10px 0" }}>
+            <Button
+              variant="contained"
+              style={{ background: "black", color: "white" }}
+              fullWidth={true}
+            >
+              Bạn chưa có sản phẩm
+            </Button>
+          </Box>
+        </Grid>
+      );
     }
   };
   const subtotalCart = () => {
@@ -154,6 +178,7 @@ export default function CartDrawer(props) {
         variant="outlined"
         onClick={toggleDrawer("right", true)}
         fullWidth={true}
+        className={classes.buttonLeft}
       >
         Add to Card
       </Button>
