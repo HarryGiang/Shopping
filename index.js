@@ -73,9 +73,9 @@ function errHandler(err, req, res, next) {
     });
   }
 }
-app.get("/", (req, res) => {
-  res.send("Welcome to Daily Code Buffer in Heroku Auto Deployment!!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome to Daily Code Buffer in Heroku Auto Deployment!!");
+// });
 //Code sroudce
 
 //Connect to DB
