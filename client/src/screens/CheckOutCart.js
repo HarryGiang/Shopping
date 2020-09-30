@@ -101,7 +101,8 @@ const CheckOutCart = (props) => {
       if (
         subtotalCart[property] === "" &&
         property !== "avatar" &&
-        property !== "note"
+        property !== "note" &&
+        property !== "password"
       ) {
         dispatch(alertopenSelect());
         console.log("Sai", Object.keys(subtotalCart).length, property);
