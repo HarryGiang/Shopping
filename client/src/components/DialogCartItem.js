@@ -69,7 +69,7 @@ export default function DialogCartItem(props) {
     }));
     console.log(name, value, "name ,value");
   };
-  console.log("DIALOGCART ITEM", dataProductCaps);
+  // console.log("DIALOGCART ITEM", dataProductCaps);
   return (
     <div>
       <Button

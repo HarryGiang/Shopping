@@ -16,52 +16,63 @@ import RegistrationScreen1 from "./screens/RegistrationScreen1";
 import Shop from "./screens/Shop";
 import Test from "./screens/Test";
 import ViewDetailsScreen from "./screens/ViewDetailsScreen";
-
+import LoginAdmin from "./screens/Admin/LoginAdmin";
+import AllImage from "./screens/Admin/LibraryImage/AllImage";
+import UploadImage from "./screens/Admin/LibraryImage/UploadImage";
 function App() {
   const { account } = useSelector((state) => state.myaccount);
 
-  return (<>
-    <BrowserRouter>
-      {account.length !== 0 ? (
-        <>
-          {console.log("account", account)}
-          <Route
-            exact={true}
-            path="/my-account/edit-password"
-            component={EditPasswordScreen}
-          />
-          <Route
-            exact={true}
-            path="/my-account/orders"
-            component={OrdersScreen}
-          />
+  return (
+    <>
+      <BrowserRouter>
+        {/* ADMIN */}
+        <Route exact={true} path="/admin/loginadmin" component={LoginAdmin} />
+        <Route exact={true} path="/admin/allimage" component={AllImage} />
+        <Route exact={true} path="/admin/uploadimage" component={UploadImage} />
+        {/* End Admin */}
+        {account.length !== 0 ? (
+          <>
+            {console.log("account", account)}
+            <Route
+              exact={true}
+              path="/my-account/edit-password"
+              component={EditPasswordScreen}
+            />
+            <Route
+              exact={true}
+              path="/my-account/orders"
+              component={OrdersScreen}
+            />
 
-          <Route exact={true} path="/my-account" component={MyAccountScreen} />
-        </>
-      ) : (
-        <Redirect to="/" />
-      )}
-      <Route path="/checkoutcart" component={CheckOutCart} />
-      <Route path="/test" component={Test} />
-      <Route path="/paymentcart" component={PaymentCart} />
-      <Route path="/registrationscreen" component={RegistrationScreen} />
-      <Route path="/registrationscreen1" component={RegistrationScreen1} />
-      <Route
-        path="/orderdetailsscreen/:id/:date"
-        component={OrderDetailsScreen}
-      />
-      <Route path="/viewdetail/:id" component={ViewDetailsScreen} />
-      {/*Okey*/}
-      <Route path="/contact" component={Contact} />
-      {/*Okey*/}
-      <Route path="/shop" component={Shop} />
-      <Route path="/about" component={About} />
-      {/*Okey*/}
-      <Route path="/" exact={true} component={HomeScreen} /> {/*Okey*/}
-      {/* <Route component={PageNotFoundScreen} /> */}
-    </BrowserRouter>
-    {/* <!-- Load Facebook SDK for JavaScript --> */}
-    
+            <Route
+              exact={true}
+              path="/my-account"
+              component={MyAccountScreen}
+            />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+        <Route path="/checkoutcart" component={CheckOutCart} />
+        <Route path="/test" component={Test} />
+        <Route path="/paymentcart" component={PaymentCart} />
+        <Route path="/registrationscreen" component={RegistrationScreen} />
+        <Route path="/registrationscreen1" component={RegistrationScreen1} />
+        <Route
+          path="/orderdetailsscreen/:id/:date"
+          component={OrderDetailsScreen}
+        />
+        <Route path="/viewdetail/:id" component={ViewDetailsScreen} />
+        {/*Okey*/}
+        <Route path="/contact" component={Contact} />
+        {/*Okey*/}
+        <Route path="/shop" component={Shop} />
+        <Route path="/about" component={About} />
+        {/*Okey*/}
+        <Route path="/" exact={true} component={HomeScreen} /> {/*Okey*/}
+        {/* <Route component={PageNotFoundScreen} /> */}
+      </BrowserRouter>
+      {/* <!-- Load Facebook SDK for JavaScript --> */}
     </>
   );
 }
