@@ -89,7 +89,7 @@ const MyAccountscreen = (props) => {
       <Navbar />{" "}
       <Container maxWidth="lg">
         <Grid
-          lg={10}
+          lg={12}
           style={{ margin: "auto" }}
           container
           direction="row"

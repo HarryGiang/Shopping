@@ -177,10 +177,9 @@ userID: "1665589066949287" */
           />
           <Typography>Login with your Social ID</Typography>
           <FacebookLogin
-            appId="332382744649828"
+            appId="253286716027191"
             autoLoad={false}
             fields="name,email,picture"
-            // onClick={responseFacebook}
             callback={loginSuccessFacebook}
             size="small"
             textButton=""

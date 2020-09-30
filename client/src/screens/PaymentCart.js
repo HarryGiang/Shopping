@@ -46,12 +46,17 @@ export const PaymentCart = () => {
             alignItems="center"
             key={index}
           >
-            <Grid lg={3}>
-              <img src={dataproduct.image2} style={{ width: "80%" }} />
+            <Grid lg={3} md={3} sm={3} xs={3}>
+              <img
+                src={dataproduct.image2}
+                style={{ width: "120px", height: "120px" }}
+              />
             </Grid>
-            <Grid lg={5}>
-              <Typography>{dataproduct.title}</Typography>
-              <Typography>{dataproduct.price}</Typography>{" "}
+            <Grid lg={3} md={3} sm={3} xs={3}>
+              <Typography gutterBottom style={{ fontWeight: "bold" }}>
+                {dataproduct.title}
+              </Typography>
+
               <TextField
                 label="Number"
                 type="number"
@@ -65,13 +70,20 @@ export const PaymentCart = () => {
                 }}
                 variant="outlined"
                 InputProps={{ inputProps: { min: 1, max: 10 } }}
+                size="small"
+                fullWidth
               />
             </Grid>
-            <Grid lg={2}>
-              {" "}
-              <Typography>{sumProduct}</Typography>
+
+            <Grid lg={2} md={2} sm={2} xs={2}>
+              <Typography align="center">
+                {dataproduct.price} x {dataproduct.quantity}
+              </Typography>
             </Grid>
-            <Grid lg={2}>
+            <Grid lg={2} md={2} sm={2} xs={2}>
+              <Typography align="center">{sumProduct}</Typography>
+            </Grid>
+            <Grid lg={1} md={1} sm={1} xs={1} align="center">
               <IconButton
                 aria-label="delete"
                 // className={classes.margin}
@@ -108,13 +120,13 @@ export const PaymentCart = () => {
           justify="center"
           alignItems="flex-start"
         >
-          <Grid lg="7">
-            <Typography>My cart</Typography>
+          <Grid lg={7} md={12} sm={12} xs={12}>
+            <Typography style={{ fontWeight: "bold" }}>My cart</Typography>
             <Divider />
             {listproductcart()}
           </Grid>
-          <Grid lg="5">
-            Oder Summary
+          <Grid lg={5} md={12} sm={12} xs={12}>
+            <Typography style={{ fontWeight: "bold" }}>Oder Summary</Typography>
             <TableContainer>
               <Table aria-label="simple table">
                 <TableBody>
