@@ -1,30 +1,28 @@
 import {
+  Backdrop,
+  CircularProgress,
   FormControlLabel,
   Grid,
-  IconButton,
+  makeStyles,
   Radio,
   RadioGroup,
   TextField,
   Typography,
-  makeStyles,
-  Backdrop,
-  CircularProgress,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import DialogContent from "@material-ui/core/DialogContent";
-import DeleteIcon from "@material-ui/icons/Delete";
+import FacebookIcon from "@material-ui/icons/Facebook";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import FacebookLogin from "react-facebook-login";
+import GoogleLogin from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
-  registrationEmail,
   loginEmail,
   loginGoogle,
+  registrationEmail,
 } from "../actions/signupforloginAction";
 import CustomizedSnackbars from "./Alert";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
-import FacebookIcon from "@material-ui/icons/Facebook";
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,

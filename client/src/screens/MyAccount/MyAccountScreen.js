@@ -3,12 +3,14 @@ import {
   Avatar,
   Box,
   Button,
+  Container,
   Grid,
   TextField,
   Typography,
-  Container,
 } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -21,8 +23,6 @@ import { Link } from "react-router-dom";
 import { AccountUserEdit, logout } from "../../actions/myaccountAction";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import IconButton from "@material-ui/core/IconButton";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
 // import "date-fns";
 const useStyles = makeStyles((theme) => ({
   paddingrow: {
