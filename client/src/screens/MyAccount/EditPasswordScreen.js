@@ -111,7 +111,7 @@ function EditAddressScreen(props) {
                   src={`${base_url}/${account[0].avatar}`}
                   style={{ width: "80px", height: "80px" }}
                 />
-                <Typography> {account[0].email.split("@", 1)}</Typography>
+                <Typography>Chào, {account[0].email.split("@", 1)}</Typography>
               </Grid>
               <Typography variant="h6" color="initial" align="right">
                 <Button

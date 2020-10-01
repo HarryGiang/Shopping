@@ -1,79 +1,68 @@
-import React, { useState, useEffect } from "react";
-import "date-fns";
-import axios from "axios";
-import Grid from "@material-ui/core/Grid";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-// function addPost(postdetail) {
-//   axios
-//     .post("http://localhost:4000/blog", postdetail, {
-//       headers: {
-//         "Content-Type": "multipart/form-data",
-//       },
-//     })
-//     .then((res) => {
-//       dispatch({
-//         type: "ADD_DATA",
-//         payload: res.data,
-//       });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
-export default function Addpost() {
-  const [title, settitle] = useState("");
-  const [des, setdes] = useState("");
-  const [file, setfile] = useState(null);
-  // const { addPost } = useContext(Globalcontext);
+import React from "react";
+import Button from "@material-ui/core/Button";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import { makeStyles } from "@material-ui/core/styles";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", file[0]);
-    console.log([...formData]);
+const useStyles = makeStyles((theme) => ({}));
 
-    const addedValue = {
-      title,
-      des,
-      formData,
-    };
-    console.log("addedValue", addedValue,file);
+export default function MenuListComposition() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const prevOpen = React.useRef(open);
 
-    // settitle("");
-    // setdes("");
-    // setfile("");
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
+
+  const handleClose = (event) => {
+    setOpen(false);
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => settitle(e.target.value)}
-        />
-        <input
-          type="text"
-          name="des"
-          value={des}
-          onChange={(e) => setdes(e.target.value)}
-        />
-        <input
-          type="file"
-          name="file"
-          onChange={(e) => {
-            setfile(e.target.files);
-          }}
-        />
-        <button type="submit" value="submit">
-          Add Post
-        </button>
-      </form>
+    <div className={classes.root}>
+      <div>
+        <Button
+          ref={anchorRef}
+          aria-haspopup="true"
+          onClick={handleToggle}
+          color="default"
+        >
+          Toggle Menu Grow
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom",
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow">
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
     </div>
   );
 }

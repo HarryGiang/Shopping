@@ -17,6 +17,7 @@ import Shop from "./screens/Shop";
 import Test from "./screens/Test";
 import ViewDetailsScreen from "./screens/ViewDetailsScreen";
 import LoginAdmin from "./screens/Admin/LoginAdmin";
+import Dashboard from "./screens/Admin/Dashboard";
 import AllImage from "./screens/Admin/LibraryImage/AllImage";
 import UploadImage from "./screens/Admin/LibraryImage/UploadImage";
 function App() {
@@ -27,12 +28,13 @@ function App() {
       <BrowserRouter>
         {/* ADMIN */}
         <Route exact={true} path="/admin/loginadmin" component={LoginAdmin} />
+        <Route exact={true} path="/admin/dashboard" component={Dashboard} />
         <Route exact={true} path="/admin/allimage" component={AllImage} />
         <Route exact={true} path="/admin/uploadimage" component={UploadImage} />
         {/* End Admin */}
-        {account.length !== 0 ? (
+        {account.length > 0 ? (
           <>
-            {console.log("account", account)}
+            {/* {console.log("account", account)} */}
             <Route
               exact={true}
               path="/my-account/edit-password"

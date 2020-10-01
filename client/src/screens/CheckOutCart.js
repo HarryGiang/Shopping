@@ -64,6 +64,7 @@ const CheckOutCart = (props) => {
     productCart: [],
     subtotalCart: "",
     date: 0,
+    dateofbirth: "0",
     status: "Tạm Giữ",
   });
   useEffect(() => {

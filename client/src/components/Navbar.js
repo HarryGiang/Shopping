@@ -157,7 +157,7 @@ export default function Navbar() {
             sm={12}
             className={classes.logoImage}
           >
-            <img src="/images/Capture.JPG" className="logoImage" />
+            <img src="/images/Capture.png" className="logoImage" />
           </Grid>
           <Grid
             container
