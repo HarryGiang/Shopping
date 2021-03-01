@@ -1,6 +1,5 @@
 {
-  "name": "react-shopping-goatwhite",
-  "proxy": "http://localhost:5000",
+  "name": "react-shopping",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,12 +14,8 @@
     "axios": "^0.20.0",
     "crypto-js": "^4.0.0",
     "date-fns": "^2.16.1",
-    "emailjs": "^3.3.0",
-    "emailjs-com": "^2.6.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-facebook-login": "^4.1.1",
-    "react-google-login": "^5.1.21",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
@@ -47,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": "13.9.0",
-    "npm": "6.13.7"
   }
 }
